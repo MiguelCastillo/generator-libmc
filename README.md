@@ -59,7 +59,7 @@ Files with `.js` extensions in the root, `src`, and `test` directories are confi
 ### [Grunt](http://gruntjs.com/) tasks
 
 #### grunt build
-Which run jshint, then browserify on src/index.js, and finally unit tests.
+Which runs jshint, then browserify on src/index.js, and finally unit tests.
 
 ```bash
 grunt build
