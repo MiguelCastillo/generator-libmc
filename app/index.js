@@ -5,7 +5,7 @@ var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
-    this.pkg = require('../../package.json');
+    this.pkg = require('../package.json');
   },
 
   prompting: function () {
@@ -35,6 +35,10 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
+      );
+      this.fs.copy(
+        this.templatePath('_bower.json'),
+        this.destinationPath('bower.json')
       );
       this.fs.copy(
         this.templatePath('_travis.yml'),
