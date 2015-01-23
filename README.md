@@ -50,6 +50,9 @@ Unit tests are defined as requirejs modules, and they are configured in the gene
 
 The unit tests are setup to run in the browser and phantomjs. To run unit tests in phantomjs, run `grunt test`. For more details, please see `livereload` and `test` grunt tasks below.
 
+### [Chai](http://chaijs.com/) for unit test assertions
+Chai is configured alongside mocha to provide assertion functionality for your unit tests.
+
 ### [JSHint](http://jshint.com/) linting
 Files with `.js` extensions in the root, `src`, and `test` directories are configured to be linted with [jshint](http://jshint.com/).  The settings that jshint picks up are defined in `.jshintrc`, which is in the root directory. `.jshintrc` is the file you want to tweak in order to configure jshint for your particular taste. To run jshint, run `grunt jshint`.  For more details, please see `jshint` grunt task below.
 
