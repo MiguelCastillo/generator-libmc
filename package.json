@@ -1,7 +1,7 @@
 {
   "name": "generator-libmc",
   "version": "0.0.5",
-  "description": "Yeoman generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, requirejs, and grunt as the core stack for linting, building, and testing.",
+  "description": "Yeoman generator for scaffolding micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, requirejs, and grunt as the core stack for linting, building, and testing.",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "https://github.com/MiguelCastillo/generator-libmc",
