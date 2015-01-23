@@ -1,7 +1,8 @@
 # generator-libmc [![Build Status](https://secure.travis-ci.org/MiguelCastillo/generator-libmc.png?branch=master)](https://travis-ci.org/MiguelCastillo/generator-libmc)
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, requirejs, and grunt as the core stack for linting, building, and testing.
 
+The primary intent of this generator is to provide a good starting point to `compile` your code with [browserify](http://browserify.org/) and run unit tests in the browser and phantomjs with [mocha](http://mochajs.org/).
 
 ## Getting Started
 
@@ -29,18 +30,65 @@ To install generator-libmc from npm, run:
 npm install -g generator-libmc
 ```
 
-Finally, initiate the generator:
+Initiate the generator:
 
 ```bash
 yo libmc
 ```
 
-### Getting To Know Yeoman
+And finally, configure your package.json
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+```bash
+npm init
+```
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+### [Browserify](http://browserify.org/) compilation
+Browserify is setup to compile `src/index.js` in order to create a [UMD](https://github.com/umdjs/umd) file `dist/index.js`. The intent is to have the basic plumbing to get you up and running with a build artifact, so please feel free to adjust `Gruntfile.js` to use the files of your choice. To build `src/index.js`, run `grunt build`.  For more details, please see `build` grunt task below.
 
+### [Mocha](http://mochajs.org/) unit tests
+Unit tests are defined as requirejs modules, and they are configured in the generated `test/SpecRunner.js` file, which is where you will need to add other unit test specs.  Currently, the generator will give you an overly simplified `test/spec/index.js` sample file to illustrate the flow of the unit test setup.
+
+The unit tests are setup to run in the browser and phantomjs. To run unit tests in phantomjs, run `grunt test`. For more details, please see `livereload` and `test` grunt tasks below.
+
+### [JSHint](http://jshint.com/) linting
+Files with `.js` extensions in the root, `src`, and `test` directories are configured to be linted with [jshint](http://jshint.com/).  The settings that jshint picks up are defined in `.jshintrc`, which is in the root directory. `.jshintrc` is the file you want to tweak in order to configure jshint for your particular taste. To run jshint, run `grunt jshint`.  For more details, please see `jshint` grunt task below.
+
+### [Grunt](http://gruntjs.com/) tasks
+
+#### grunt build
+Which run jshint, then browserify on src/index.js, and finally unit tests.
+
+```bash
+grunt build
+```
+
+#### grunt server
+Which starts a connect server and opens up a browser window that can continuesly run unit tests
+
+```bash
+grunt server
+```
+
+#### grunt test
+Which runs all unit tests one time and reports results in the console
+
+```bash
+grunt test
+```
+
+#### grunt livereload
+Which starts a server for running unit tests and runs watch on js files in `test` and `src`. Watch will run jshint, build, and then unit tests in the browser.  If you have [livereload](http://livereload.com/) setup, then the browser will automatically refresh to run unit tests upon build completion.  I suggest checking livereload plugins for your browser.
+
+```bash
+grunt livereload
+```
+
+#### grunt jshint
+Will push your code through JSHint and report errors/warnings accordingly.
+
+```bash
+grunt jshint
+```
 
 ## License
 
