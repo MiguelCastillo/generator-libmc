@@ -36,7 +36,7 @@ Initiate the generator:
 yo libmc
 ```
 
-And finally, configure your package.json
+And finally, configure your package.json:
 
 ```bash
 npm init
