@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
+    "sinon": "~1.12.2",
     "browserify": "~8.0.3",
     "requirejs": "~2.1.15",
     "jshint-stylish": "~1.0.0",
