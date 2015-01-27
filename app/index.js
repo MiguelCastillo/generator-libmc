@@ -44,6 +44,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_travis.yml'),
         this.destinationPath('.travis.yml')
       );
+      this.fs.copy(
+        this.templatePath('_gitignore'),
+        this.destinationPath('.gitignore')
+      );
     },
 
     projectfiles: function () {
