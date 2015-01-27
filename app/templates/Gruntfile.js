@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     watch: {
       test: {
         files: ['src/**/*.js', 'test/**/*.js', '*.js'],
-        tasks: ['jshint:all', 'browserify:debug'],
+        tasks: ['jshint:all', 'browserify:build'],
         options: {
           livereload: true
         }
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'debug': {
+      'build': {
         files: {
           'dist/index.js': ['src/index.js']
         },
@@ -71,17 +71,28 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+    uglify: {
+      'build': {
+        options: {
+          sourceMap: false
+        },
+        files: {
+          'dist/index.min.js': ['dist/index.js']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['jshint:all', 'browserify:debug', 'test']);
+  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build', 'test']);
   grunt.registerTask('server', ['connect:keepalive']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
   grunt.registerTask('livereload', ['concurrent:test']);
