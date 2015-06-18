@@ -59,17 +59,17 @@ Files with `.js` extensions in the root, `src`, and `test` directories are confi
 ### [Grunt](http://gruntjs.com/) tasks
 
 #### grunt build
-Which runs jshint, then browserify on src/index.js, and finally unit tests.
+Which runs jshint and then browserify on src/index.js.
 
 ```bash
 grunt build
 ```
 
-#### grunt server
-Which starts a connect server and opens up a browser window that can continuesly run unit tests
+#### grunt serve
+Which starts a connect server and opens up a browser window that can continuously run unit tests
 
 ```bash
-grunt server
+grunt serve
 ```
 
 #### grunt test
@@ -77,13 +77,6 @@ Which runs all unit tests one time and reports results in the console
 
 ```bash
 grunt test
-```
-
-#### grunt livereload
-Which starts a server for running unit tests and runs watch on js files in `test` and `src`. Watch will run jshint, build, and then unit tests in the browser.  If you have [livereload](http://livereload.com/) setup, then the browser will automatically refresh to run unit tests upon build completion.  I suggest checking livereload plugins for your browser.
-
-```bash
-grunt livereload
 ```
 
 #### grunt jshint

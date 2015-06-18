@@ -46,6 +46,7 @@ module.exports = function(grunt) {
     jshint: {
       all: {
         options: {
+          jshintrc: true,
           reporter: require('jshint-stylish')
         },
         src: ['src/**/*.js', 'test/**/*.js', '*.js']
@@ -92,8 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build', 'test']);
-  grunt.registerTask('server', ['connect:keepalive']);
+  grunt.registerTask('build', ['jshint:all', 'browserify:build']);
+  grunt.registerTask('serve', ['concurrent:test']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
-  grunt.registerTask('livereload', ['concurrent:test']);
 };
