@@ -46,6 +46,7 @@ module.exports = function(grunt) {
     jshint: {
       all: {
         options: {
+          jshintrc: true,
           reporter: require('jshint-stylish')
         },
         src: ['src/**/*.js', 'test/**/*.js', '*.js']
