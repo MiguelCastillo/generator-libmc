@@ -12,15 +12,19 @@
     <!-- Load up mocha -->
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css"/>
     <script type="text/javascript" src="../node_modules/mocha/mocha.js"></script>
+    <script type="text/javascript" src="../node_modules/sinon/pkg/sinon.js"></script>
 
-    <script src="../node_modules/requirejs/require.js"></script>
-    <script src="require-config.js"></script>
+    <script type="text/javascript" src="../node_modules/spromise/dist/spromise.min.js"></script>
+    <script>if (!window.hasOwnProperty("Promise")) window.Promise = spromise;</script>
+
+    <script src="../node_modules/bit-imports/dist/bit-imports.js"></script>
+    <script src="bitimports-config.js"></script>
   </head>
 
   <body>
     <div id="mocha"></div>
     <script>
-      require(["test/SpecRunner"]);
+      System.load("test/SpecRunner");
     </script>
   </body>
 </html>
