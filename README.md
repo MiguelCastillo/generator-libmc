@@ -1,6 +1,6 @@
 # generator-libmc [![Build Status](https://secure.travis-ci.org/MiguelCastillo/generator-libmc.png?branch=master)](https://travis-ci.org/MiguelCastillo/generator-libmc)
 
-> [Yeoman](http://yeoman.io) generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, requirejs, and grunt as the core stack for linting, building, and testing.
+> [Yeoman](http://yeoman.io) generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, bit-imports, and grunt as the core stack for linting, building, and testing.
 
 The primary intent of this generator is to provide a good starting point to `compile` your code with [browserify](http://browserify.org/) and run unit tests in the browser and phantomjs with [mocha](http://mochajs.org/).
 
@@ -46,7 +46,7 @@ npm init
 Browserify is setup to compile `src/index.js` in order to create a [UMD](https://github.com/umdjs/umd) file `dist/index.js`. The intent is to have the basic plumbing to get you up and running with a build artifact, so please feel free to adjust `Gruntfile.js` to use the files of your choice. To build `src/index.js`, run `grunt build`.  For more details, please see `build` grunt task below.
 
 ### [Mocha](http://mochajs.org/) unit tests
-Unit tests are defined as requirejs modules, and they are configured in the generated `test/SpecRunner.js` file, which is where you will need to add other unit test specs.  Currently, the generator will give you an overly simplified `test/spec/index.js` sample file to illustrate the flow of the unit test setup.
+Unit tests are configured in the generated `test/SpecRunner.js` file, which is where you will need to add other unit test specs.  Currently, the generator will give you an overly simplified `test/spec/index.js` sample file to illustrate the flow of the unit test setup.
 
 The unit tests are setup to run in the browser and phantomjs. To run unit tests in phantomjs, run `grunt test`. For more details, please see `livereload` and `test` grunt tasks below.
 

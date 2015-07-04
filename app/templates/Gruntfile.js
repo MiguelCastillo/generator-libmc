@@ -1,11 +1,18 @@
+var pkg = require('./package.json');
+
+
 //
 // http://24ways.org/2013/grunt-is-not-weird-and-hard/
 //
 module.exports = function(grunt) {
   'use strict';
 
+  var date = new Date();
+  var today = date.toDateString() + ' ' + date.toLocaleTimeString();
+  var banner = '/*! <%= pkg.name %> v<%= pkg.version %> - ' + today + '. (c) ' + date.getFullYear() + ' Miguel Castillo. Licensed under MIT */';
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
     connect: {
       test: {
         options: {
@@ -61,22 +68,24 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-      'build': {
+      build: {
         files: {
           'dist/index.js': ['src/index.js']
         },
         options: {
+          banner: banner,
           browserifyOptions: {
-            'detectGlobals': false,
-            'standalone': 'index'
+            detectGlobals: false,
+            standalone: 'index'
           }
         }
       }
     },
     uglify: {
-      'build': {
+      build: {
         options: {
-          sourceMap: false
+          preserveComments: 'some',
+          sourceMap: true
         },
         files: {
           'dist/index.min.js': ['dist/index.js']
@@ -93,7 +102,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['jshint:all', 'browserify:build']);
+  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build']);
   grunt.registerTask('serve', ['concurrent:test']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
 };

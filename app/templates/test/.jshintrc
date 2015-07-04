@@ -5,14 +5,17 @@
   "indent":2,
   "devel":true,
   "globals":{
-    "requirejs": true,
+    "System": true,
+    "module": true,
     "require": true,
     "define": true,
+    "bitimports": true,
     "window": true,
     "describe": true,
-    "mocha": true,
     "it": true,
     "expect": true,
-    "beforeEach": true
+    "beforeEach": true,
+    "sinon": true,
+    "mocha": true
   }
 }
