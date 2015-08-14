@@ -48,6 +48,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_gitignore'),
         this.destinationPath('.gitignore')
       );
+      this.fs.copy(
+        this.templatePath('_npmignore'),
+        this.destinationPath('.npmignore')
+      );
     },
 
     projectfiles: function () {

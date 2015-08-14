@@ -76,7 +76,7 @@ module.exports = function(grunt) {
           banner: banner,
           browserifyOptions: {
             detectGlobals: false,
-            standalone: 'index'
+            standalone: '<%= pkg.name %>'
           }
         }
       }

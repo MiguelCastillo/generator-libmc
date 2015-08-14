@@ -9,7 +9,7 @@ var System = (function() {
   });
 
   // Add modules to exclude from pipeline processing
-  importer.ignore(["chai"]);
+  importer.ignore(["chai", "dist/index"]);
 
   bitimports.Logger.enableAll();
   return importer;
