@@ -1,6 +1,6 @@
 # generator-libmc [![Build Status](https://secure.travis-ci.org/MiguelCastillo/generator-libmc.png?branch=master)](https://travis-ci.org/MiguelCastillo/generator-libmc)
 
-> [Yeoman](http://yeoman.io) generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, jshint, bit-imports, and grunt as the core stack for linting, building, and testing.
+> [Yeoman](http://yeoman.io) generator for micro libraries that run in the Browser and Node.js. It has browserify, mocha, chai, phantomjs, connect, eslint, bit-imports, and grunt as the core stack for linting, building, and testing.
 
 The primary intent of this generator is to provide a good starting point to `compile` your code with [browserify](http://browserify.org/) and run unit tests in the browser and phantomjs with [mocha](http://mochajs.org/).
 
@@ -45,45 +45,50 @@ npm init
 ### [Browserify](http://browserify.org/) compilation
 Browserify is setup to compile `src/index.js` in order to create a [UMD](https://github.com/umdjs/umd) file `dist/index.js`. The intent is to have the basic plumbing to get you up and running with a build artifact, so please feel free to adjust `Gruntfile.js` to use the files of your choice. To build `src/index.js`, run `grunt build`.  For more details, please see `build` grunt task below.
 
+### [Bitimports](https://github.com/MiguelCastillo/bit-imports) runs unit tests
+Bitimports is the module loader used for running your tests. It runs unit tests in the browser and in PhantonJS. It is wired up with [Babel](https://babeljs.io/) so that you can write your unit tests using ES6 (ES2015) and newer features.
+
 ### [Mocha](http://mochajs.org/) unit tests
 Unit tests are configured in the generated `test/SpecRunner.js` file, which is where you will need to add other unit test specs.  Currently, the generator will give you an overly simplified `test/spec/index.js` sample file to illustrate the flow of the unit test setup.
+
+All your test files are defined in `test/SpecRunner.js`.  If you wish to add more tests, that's where you add them.
 
 The unit tests are setup to run in the browser and phantomjs. To run unit tests in phantomjs, run `grunt test`. For more details, please see `livereload` and `test` grunt tasks below.
 
 ### [Chai](http://chaijs.com/) for unit test assertions
 Chai is configured alongside mocha to provide assertion functionality for your unit tests.
 
-### [JSHint](http://jshint.com/) linting
-Files with `.js` extensions in the root, `src`, and `test` directories are configured to be linted with [jshint](http://jshint.com/).  The settings that jshint picks up are defined in `.jshintrc`, which is in the root directory. `.jshintrc` is the file you want to tweak in order to configure jshint for your particular taste. To run jshint, run `grunt jshint`.  For more details, please see `jshint` grunt task below.
+### [ESLint](http://eslint.org/) linting
+Files with `.js` extensions in the root, `src`, and `test` directories are configured to be linted with [eslint](http://eslint.org/).  The settings that eslint picks up are defined in `.eslintrc`, which is in the root directory. `.eslintrc` is the file you want to tweak in order to configure eslint for your particular taste. To run eslint, run `grunt eslint`.  For more details, please see `eslint` grunt task below.
 
 ### [Grunt](http://gruntjs.com/) tasks
 
 #### grunt build
-Which runs jshint and then browserify on src/index.js.
+Runs eslint and then browserify on src/index.js.
 
 ```bash
 grunt build
 ```
 
 #### grunt serve
-Which starts a connect server and opens up a browser window that can continuously run unit tests
+Starts a connect server and opens up a browser window that can continuously run unit tests
 
 ```bash
 grunt serve
 ```
 
 #### grunt test
-Which runs all unit tests one time and reports results in the console
+Runs all unit tests one time and reports results in the console
 
 ```bash
 grunt test
 ```
 
-#### grunt jshint
-Will push your code through JSHint and report errors/warnings accordingly.
+#### grunt eslint
+Lints your code and report errors/warnings accordingly.
 
 ```bash
-grunt jshint
+grunt eslint
 ```
 
 ## License
