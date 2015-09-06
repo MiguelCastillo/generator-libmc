@@ -5,6 +5,7 @@
     <title>Unit Tests</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Unit Tests">
+    <meta name="author" content="Miguel Castillo">
 
     <!-- polyfill function.bind - phantomjs does not current have it implemented  -->
     <script type="text/javascript" src="bind.js"></script>
@@ -15,17 +16,25 @@
     <script type="text/javascript" src="../node_modules/sinon/pkg/sinon.js"></script>
 
     <script type="text/javascript" src="../node_modules/spromise/dist/spromise.min.js"></script>
-    <script>if (!window.hasOwnProperty("Promise")) window.Promise = spromise;</script>
+    <script>if (typeof(window) !== 'undefined' && !window.hasOwnProperty("Promise")) window.Promise = spromise;</script>
 
-    <script src="../node_modules/bit-imports/dist/bit-imports.js"></script>
-    <script src="bitimports-config.js"></script>
+    <script type="text/javascript" src="../node_modules/bit-imports/dist/bit-imports.js"></script>
+    <script type="text/javascript" src="config.js"></script>
   </head>
 
   <body>
     <div id="mocha"></div>
     <script>
-      System.load("test/SpecRunner");
+      mocha.setup('bdd');
+      System.import(['chai', 'test/SpecRunner']).then(function(modules) {
+        // Setup chai
+        var chai      = modules[0];
+        window.chai   = chai;
+        window.expect = chai.expect;
+        window.assert = chai.assert;
+        // Run test
+        mocha.run();
+      });
     </script>
   </body>
 </html>
-
