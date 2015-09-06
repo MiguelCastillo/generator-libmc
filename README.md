@@ -46,7 +46,7 @@ npm init
 Browserify is setup to compile `src/index.js` in order to create a [UMD](https://github.com/umdjs/umd) file `dist/index.js`. The intent is to have the basic plumbing to get you up and running with a build artifact, so please feel free to adjust `Gruntfile.js` to use the files of your choice. To build `src/index.js`, run `grunt build`.  For more details, please see `build` grunt task below.
 
 ### [Bitimports](https://github.com/MiguelCastillo/bit-imports) runs unit tests
-Bitimports is the module loader used for running your tests. It runs unit tests in the browser and in PhantonJS. It is wired up with [Babel](https://babeljs.io/) so that you can write your unit tests using ES6 (ES2015) and newer features.
+Bitimports is the module loader used for running your tests. It runs unit tests in the browser and in PhantomJS. It is wired up with [Babel](https://babeljs.io/) so that you can write your unit tests using ES6 (ES2015) and newer features.
 
 ### [Mocha](http://mochajs.org/) unit tests
 Unit tests are configured in the generated `test/SpecRunner.js` file, which is where you will need to add other unit test specs.  Currently, the generator will give you an overly simplified `test/spec/index.js` sample file to illustrate the flow of the unit test setup.
