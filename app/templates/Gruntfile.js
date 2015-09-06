@@ -1,14 +1,14 @@
-var pkg = require('./package.json');
-
-
 //
 // http://24ways.org/2013/grunt-is-not-weird-and-hard/
 //
 module.exports = function(grunt) {
   'use strict';
 
+  require('load-grunt-tasks')(grunt);
+
   var date = new Date();
   var today = date.toDateString() + ' ' + date.toLocaleTimeString();
+  var pkg = require('./package.json');
   var banner = '/*! <%= pkg.name %> v<%= pkg.version %> - ' + today + '. (c) ' + date.getFullYear() + ' Miguel Castillo. Licensed under MIT */';
 
   grunt.initConfig({
@@ -42,26 +42,25 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      test: {
+      build: {
         files: ['src/**/*.js', 'test/**/*.js', '*.js'],
-        tasks: ['jshint:all', 'browserify:build'],
+        tasks: ['build'],
         options: {
           livereload: true
         }
       }
     },
-    jshint: {
+    eslint: {
       all: {
         options: {
-          jshintrc: true,
-          reporter: require('jshint-stylish')
+          //format: require('eslint-tap')
         },
         src: ['src/**/*.js', 'test/**/*.js', '*.js']
       }
     },
     concurrent: {
-      test: {
-        tasks: ['connect:keepalive', 'watch:test'],
+      build: {
+        tasks: ['connect:keepalive', 'watch:build'],
         options: {
           logConcurrentOutput : true
         }
@@ -91,18 +90,18 @@ module.exports = function(grunt) {
           'dist/index.min.js': ['dist/index.js']
         }
       }
+    },
+    release: {
+      options: {
+        tagName: 'v<%= version %>',
+        tagMessage: 'Version <%= version %>',
+        commitMessage: 'Release v<%= version %>',
+        afterBump: ['build']
+      }
     }
   });
 
-  grunt.loadNpmTasks('grunt-mocha');
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-
-  grunt.registerTask('build', ['jshint:all', 'browserify:build', 'uglify:build']);
-  grunt.registerTask('serve', ['concurrent:test']);
+  grunt.registerTask('build', ['eslint:all', 'browserify:build', 'uglify:build']);
+  grunt.registerTask('serve', ['build', 'concurrent:build']);
   grunt.registerTask('test', ['connect:test', 'mocha:test']);
 };
