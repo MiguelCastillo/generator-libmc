@@ -33,6 +33,9 @@
     "yosay": "^1.1.0"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-release": "^0.13.0",
+    "load-grunt-tasks": "^3.4.1",
     "mocha": "*"
   },
   "peerDependencies": {
