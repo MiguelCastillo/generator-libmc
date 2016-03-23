@@ -1,7 +1,13 @@
 {
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "env": {
     "browser": true,
-    "commonjs": true
+    "es6":true
+  },
+  "ecmaFeatures": {
+    "modules": true
   },
   "rules": {
     "curly": 2,
