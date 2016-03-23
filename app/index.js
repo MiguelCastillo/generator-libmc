@@ -37,10 +37,6 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('package.json')
       );
       this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
-      this.fs.copy(
         this.templatePath('_travis.yml'),
         this.destinationPath('.travis.yml')
       );
@@ -79,12 +75,17 @@ module.exports = yeoman.generators.Base.extend({
 
     distfiles: function() {
       this.directory('dist', 'dist');
+    },
+
+    taskfiles: function() {
+      this.bulkDirectory('tasks', 'tasks');
     }
   },
 
   install: function () {
     this.installDependencies({
-      skipInstall: this.options['skip-install']
+      skipInstall: this.options['skip-install'],
+      bower: false
     });
   }
 });

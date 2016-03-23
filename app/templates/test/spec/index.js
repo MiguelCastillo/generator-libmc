@@ -1,4 +1,5 @@
 import index from 'dist/index';
+import { expect } from 'chai';
 
 describe('Test suite', () => {
   var pandaBear;
