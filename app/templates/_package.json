@@ -23,6 +23,7 @@
     "grunt-eslint": "^18.0.0",
     "grunt-mocha": "~0.4.15",
     "grunt-release": "^0.13.0",
+    "connect-livereload": "^0.5.4",
     "load-grunt-tasks": "^3.4.1",
     "mocha": "~2.4.5",
     "sinon": "~1.17.3",
